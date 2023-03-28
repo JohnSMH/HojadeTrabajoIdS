@@ -19,20 +19,20 @@ const app = express();
 // Dapr publishes messages with the application/cloudevents+json content-type
 app.use(bodyParser.json({ type: 'application/*+json' }));
 
-const port = 3000;
+const port = 3001;
 
 app.get('/dapr/subscribe', (_req, res) => {
     res.json([
         {
             pubsubname: "pubsub",
-            topic: "Compresion",
-            route: "Compresion"
+            topic: "Resultado",
+            route: "Resultado"
         }
     ]);
 });
 
-app.post('/Compresion', (req, res) => {
-    console.log("Compresion: ", lzbase62.decompress(req.body.data.message));
+app.post('/Resultado', (req, res) => {
+    console.log("Resultado Comprimido: ", req.body.data.message)
     res.sendStatus(200);
 });
 

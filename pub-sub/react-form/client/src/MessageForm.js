@@ -42,13 +42,22 @@ export class MessageForm extends React.Component {
             method:"POST",
             body: JSON.stringify(this.state),
         });
+        this.state.messageType = "Resultado"
+        fetch('/publish', {
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          method:"POST",
+          body: JSON.stringify(this.state),
+      });
         event.preventDefault();
         this.setState(this.getInitialState());
     }
 
     getInitialState = () => {
       return {
-        messageType: "Resultado",
+        messageType: "Compresion",
         message: ""
       };
     }
@@ -60,7 +69,7 @@ export class MessageForm extends React.Component {
         <div className="form-group">
           <label>Select Message Type</label>
           <select className="custom-select custom-select-lg mb-3" name="messageType" onChange={this.handleInputChange} value={this.state.messageType}>
-            <option value="Resultado">Comprimir</option>
+            <option value="Compresion">Comprimir</option>
           </select>
         </div>
         <div className="form-group">
